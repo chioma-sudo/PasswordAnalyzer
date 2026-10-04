@@ -268,7 +268,8 @@ def main():
     print("================================")
     print("     PASSWORD SECURITY ANALYZER")
     print("================================")
-    print("\nEnter your password below.")
+    print("\nEnter your intended password below.")
+
     password = getpass("Password: ")
 
     common_passwords = load_common_passwords()
@@ -278,7 +279,8 @@ def main():
         common_passwords
     )
 
-    print("\nPASSWORD ANALYSIS")
+    print("\nPASSWORD ANALYSIS SYSTEM")
+    
     print("------------------")
 
     print(f"Strength: {results['strength']}")
