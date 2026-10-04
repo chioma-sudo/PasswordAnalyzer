@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Security Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">🔐</div>
+                <h2>Password Security Analyzer</h2>
+            </div>
+
+            <nav>
+                <a href="#" class="nav-link active">Home</a>
+                <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                <a href="{{ url_for('tips') }}" class="nav-link">Tips</a>
+            </nav>
+
+            <div class="sidebar-message">
+                <p>Safer Passwords</p>
+                <strong>A Safer You</strong>
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <p class="eyebrow">WELCOME</p>
+
+                <h1>Check Your Password Security</h1>
+
+                <p class="welcome-text">
+                    Analyze your password and find out how strong and secure it is.
+                </p>
+            </section>
+
+
+            <!-- Analyzer Area -->
+            <section class="analyzer-area">
+
+                <!-- Password Input Card -->
+                <div class="password-card">
+
+                    <div class="card-header">
+                        <h2>Analyze Your Password</h2>
+                        <p>Enter a password below to check its security.</p>
+                    </div>
+
+                    <form method="POST">
+
+                        <label for="password">Password</label>
+
+                        <div class="password-input-wrapper">
+                            <input type="password" id="password" name="password" 
+                            placeholder="Enter your password">
+                            <p class="character-count"><span id="character-count">0</span> 
+                            characters</p>
+
+                            <div class="live-strength">
+    <div class="live-meter">
+        <div class="meter-label">
+            <span>Weak</span>
+            <span id="weak-value">50%</span>
+        </div>
+        <div class="meter-bar">
+            <div id="weak-bar" class="meter-fill meter-weak"></div>
+        </div>
+    </div>
+
+    <div class="live-meter">
+        <div class="meter-label">
+            <span>Moderate</span>
+            <span id="moderate-value">50%</span>
+        </div>
+        <div class="meter-bar">
+            <div id="moderate-bar" class="meter-fill meter-moderate"></div>
+        </div>
+    </div>
+
+    <div class="live-meter">
+        <div class="meter-label">
+            <span>Strong</span>
+            <span id="strong-value">50%</span>
+        </div>
+        <div class="meter-bar">
+            <div id="strong-bar" class="meter-fill meter-strong"></div>
+        </div>
+    </div>
+</div>
+                            
+
+                            <span class="input-icon">👁</span>
+                        </div>
+
+                        <label class="show-password">
+                            <input type="checkbox" id="show-password">
+                            Show password
+                        </label>
+
+                        <button type="submit">
+                            Analyze Password
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- Results Card -->
+                {% if results %}
+                <div class="results">
+
+                    <div class="results-header">
+                        <p class="eyebrow">ANALYSIS RESULTS</p>
+                        <h2>Password Analysis</h2>
+                    </div>
+
+                    <div class="analyzed-password">
+                        <strong>Password analyzed</strong>
+                        <span>{{ password }}</span>
+                    </div>
+
+
+                <div class="strength-section">
+    <div class="strength-heading">
+        <strong>Password Strength</strong>
+        <span class="strength strength-{{ results['strength']|lower }}">
+            {{ results["strength"] }}
+        </span>
+    </div>
+
+    <div class="strength-bar">
+        <div class="strength-fill strength-fill-{{ results['strength']|lower }}"></div>
+    </div>
+</div>
+
+
+                    <div class="recommendation">
+
+                        <strong>Recommendation</strong>
+
+                        <p>
+                            {{ results["recommendation"] }}
+                        </p>
+
+                    </div>
+
+
+                    <div class="results-section">
+
+                        <h3>Risk Indicators</h3>
+
+                        <ul>
+                            {% for risk in results["risk_indicators"] %}
+                                <li>{{ risk }}</li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+
+
+                    <div class="results-section">
+
+                        <h3>Feedback</h3>
+
+                        <ul>
+                            {% for item in results["feedback"] %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                <!-- Empty Results Card -->
+                <div class="results empty-results">
+
+                    <div class="empty-icon">🛡️</div>
+
+                    <p class="eyebrow">READY TO ANALYZE?</p>
+
+                    <h2>Your results will appear here</h2>
+
+                    <p>
+                        Enter your password and click
+                        <strong>Analyze Password</strong>
+                        to see your security results.
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script>
+        const passwordInput = document.getElementById("password");
+        const showPassword = document.getElementById("show-password");
+
+        showPassword.addEventListener("change", function () {
+            if (showPassword.checked) {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
+
+    const characterCount = document.getElementById("character-count");
+
+passwordInput.addEventListener("input", function () {
+    characterCount.textContent = passwordInput.value.length;
+});
+
+const weakBar = document.getElementById("weak-bar");
+const moderateBar = document.getElementById("moderate-bar");
+const strongBar = document.getElementById("strong-bar");
+
+const weakValue = document.getElementById("weak-value");
+const moderateValue = document.getElementById("moderate-value");
+const strongValue = document.getElementById("strong-value");
+
+passwordInput.addEventListener("input", function () {
+    const password = passwordInput.value;
+
+    let score = 0;
+
+    if (password.length >= 8) {
+        score += 1;
+    }
+
+    if (password.length >= 12) {
+        score += 1;
+    }
+
+    if (/[A-Z]/.test(password)) {
+        score += 1;
+    }
+
+    if (/[a-z]/.test(password)) {
+        score += 1;
+    }
+
+    if (/[0-9]/.test(password)) {
+        score += 1;
+    }
+
+    if (/[^A-Za-z0-9]/.test(password)) {
+        score += 1;
+    }
+
+    let weak;
+    let moderate;
+    let strong;
+
+    if (score <= 2) {
+        weak = 90;
+        moderate = 30;
+        strong = 10;
+    } else if (score <= 4) {
+        weak = 40;
+        moderate = 75;
+        strong = 45;
+    } else {
+        weak = 10;
+        moderate = 40;
+        strong = 90;
+    }
+
+    if (password.length === 0) {
+        weak = 50;
+        moderate = 50;
+        strong = 50;
+    }
+
+    weakBar.style.width = weak + "%";
+    moderateBar.style.width = moderate + "%";
+    strongBar.style.width = strong + "%";
+
+    weakValue.textContent = weak + "%";
+    moderateValue.textContent = moderate + "%";
+    strongValue.textContent = strong + "%";
+});
+
+
+
+    </script>
+
+</body>
+</html>
+

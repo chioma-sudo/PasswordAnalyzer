@@ -1,0 +1,28 @@
+@startuml
+
+title Password Security Analyzer - Sequence Diagram
+
+actor User
+
+participant "Analyzer" as Analyzer
+participant "Security Checks" as Checks
+participant "Common Password Check" as Common
+participant "Result Generator" as Results
+
+User -> Analyzer : Enter password
+
+Analyzer -> Checks : Perform security checks
+Checks --> Analyzer : Return check results
+
+Analyzer -> Common : Check if password is common
+Common --> Analyzer : Return common status
+
+Analyzer -> Analyzer : Calculate score
+Analyzer -> Analyzer : Determine password strength
+
+Analyzer -> Results : Generate feedback,\nrisk indicators & recommendation
+Results --> Analyzer : Return analysis result
+
+Analyzer --> User : Display password analysis
+
+@enduml

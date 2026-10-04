@@ -1,0 +1,34 @@
+@startuml
+
+title Password Security Analyzer - State Diagram
+
+[*] --> Idle
+
+state Idle
+state "Password Entered" as PasswordEntered
+state "Analyzing Password" as Analyzing
+state "Score Calculated" as ScoreCalculated
+state "Common Password Check" as CommonCheck
+state "Strength Determined" as StrengthDetermined
+state "Result Generated" as ResultGenerated
+state "Results Displayed" as ResultsDisplayed
+
+Idle --> PasswordEntered : User enters password
+
+PasswordEntered --> Analyzing : Analysis begins
+
+Analyzing --> ScoreCalculated : Security checks completed
+
+ScoreCalculated --> CommonCheck : Check password
+
+CommonCheck --> StrengthDetermined : Common password\n[Strength = Weak]
+
+CommonCheck --> StrengthDetermined : Not common\n[Determine from score]
+
+StrengthDetermined --> ResultGenerated : Generate feedback,\nrisk indicators & recommendation
+
+ResultGenerated --> ResultsDisplayed : Display analysis
+
+ResultsDisplayed --> [*]
+
+@enduml

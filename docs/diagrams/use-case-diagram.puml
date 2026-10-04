@@ -1,0 +1,17 @@
+@startuml
+
+left to right direction
+
+skinparam packageStyle rectangle
+
+actor User
+
+rectangle "Password Security Analyzer" {
+
+    usecase "Analyze Password" as AnalyzePassword
+
+}
+
+User --> AnalyzePassword
+
+@enduml

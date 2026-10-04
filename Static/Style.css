@@ -1,0 +1,427 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f5f0;
+    color: #343434;
+}
+
+/* Main Dashboard */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+
+.sidebar {
+    width: 245px;
+    background-color: #e8e1d8;
+    padding: 30px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brand {
+    text-align: center;
+}
+
+.brand-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 15px;
+    background-color: #d8e8df;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.brand h2 {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+    color: #3b3b3b;
+}
+
+/* Navigation */
+
+nav {
+    margin-top: 45px;
+}
+
+.nav-link {
+    display: block;
+    text-decoration: none;
+    color: #555;
+    padding: 13px 16px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    transition: 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: #f4dfe1;
+}
+
+.nav-link.active {
+    background-color: #d8e8df;
+    color: #34463d;
+    font-weight: bold;
+}
+
+/* Sidebar Message */
+
+.sidebar-message {
+    background-color: #f3ddd7;
+    padding: 18px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.sidebar-message p {
+    margin: 0 0 5px;
+    color: #666;
+    font-size: 13px;
+}
+
+.sidebar-message strong {
+    color: #4a4a4a;
+}
+
+/* Main Content */
+
+.main-content {
+    flex: 1;
+    padding: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Welcome */
+
+.welcome-section {
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: #8b7a9e;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.welcome-section h1 {
+    margin: 0;
+    text-align: left;
+    color: #303030;
+    font-size: 38px;
+}
+
+.welcome-text {
+    text-align: left;
+    color: #777;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Analyzer Layout */
+
+.analyzer-area {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.9fr) minmax(350px, 1.1fr);
+    gap: 25px;
+    align-items: start;
+}
+
+/* Cards */
+
+.password-card,
+.results {
+    background-color: #fffdf9;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(80, 70, 60, 0.08);
+}
+
+.card-header h2,
+.results-header h2 {
+    margin: 0;
+    color: #353535;
+}
+
+.card-header p {
+    color: #777;
+    margin-top: 8px;
+}
+
+/* Form */
+
+form {
+    margin-top: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+}
+
+.password-input-wrapper {
+    position: relative;
+}
+
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 14px 45px 14px 15px;
+    border: 1px solid #ddd5cd;
+    border-radius: 12px;
+    background-color: #faf8f5;
+    font-size: 15px;
+    color: #333;
+    outline: none;
+}
+
+input[type="password"]:focus,
+input[type="text"]:focus {
+    border-color: #b8cfc3;
+    box-shadow: 0 0 0 3px rgba(184, 207, 195, 0.25);
+}
+
+.input-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+/* About and Tips Pages */
+}
+
+.about-grid,
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.about-card,
+.tip-card {
+    background: #fffdf9;
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(80, 70, 60, 0.08);
+}
+
+.about-card h2,
+.tip-card h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #3f4543;
+}
+
+.about-card p,
+.tip-card p {
+    color: #6f7673;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.about-card ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.about-card li {
+    color: #6f7673;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.tip-card:nth-child(1) {
+    background: #f1eafa;
+}
+
+.tip-card:nth-child(2) {
+    background: #e9f1f5;
+}
+
+.tip-card:nth-child(3) {
+    background: #f9e5dc;
+}
+
+.tip-card:nth-child(4) {
+    background: #e8f0eb;
+}
+
+.tip-card:nth-child(5) {
+    background: #f5eee5;
+}
+
+.tip-card:nth-child(6) {
+    background: #eee9f5;
+}
+
+.tip-number {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #78857f;
+    margin-bottom: 14px;
+}
+
+.tips-reminder {
+    margin-top: 24px;
+    background: #fffdf9;
+    border-radius: 22px;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 24px rgba(80, 70, 60, 0.08);
+}
+
+.tips-reminder .empty-icon {
+    flex-shrink: 0;
+}
+
+.tips-reminder h2 {
+    margin: 4px 0 8px;
+}
+
+.tips-reminder p:last-child {
+    margin: 0;
+    color: #6f7673;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .about-grid,
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tips-reminder {
+        align-items: flex-start;
+    }
+}
+/* Password strength indicator */
+
+.strength-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.strength {
+    font-weight: 700;
+}
+
+.strength-weak {
+    color: #c96b6b;
+}
+
+.strength-moderate {
+    color: #d58a55;
+}
+
+.strength-strong {
+    color: #5f9b7a;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 10px;
+    background: #eee9e3;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.strength-fill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.strength-fill-weak {
+    width: 33%;
+    background: #d98b8b;
+}
+
+.strength-fill-moderate {
+    width: 66%;
+    background: #e0a16d;
+}
+
+.strength-fill-strong {
+    width: 100%;
+    background: #8fbea6;
+}
+/* Live strength feedback */
+
+.live-weak {
+    color: #c96b6b;
+}
+
+.live-moderate {
+    color: #d58a55;
+}
+
+.live-strong {
+    color: #5f9b7a;
+}
+/* Live strength meters */
+
+.live-strength {
+    margin-top: 20px;
+}
+
+.live-meter {
+    margin-bottom: 14px;
+}
+
+.meter-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.meter-bar {
+    width: 100%;
+    height: 8px;
+    background: #eee9e3;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.35s ease;
+}
+
+.meter-weak {
+    width: 50%;
+    background: #d98b8b;
+}
+
+.meter-moderate {
+    width: 50%;
+    background: #e0a16d;
+}
+
+.meter-strong {
+    width: 50%;
+    background: #8fbea6;
+}

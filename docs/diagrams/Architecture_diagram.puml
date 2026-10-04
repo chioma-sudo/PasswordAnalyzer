@@ -1,0 +1,43 @@
+@startuml
+
+title Password Security Analyzer - Architecture Diagram
+
+actor User
+
+rectangle "Input Layer" {
+    component "Password Input" as Input
+}
+
+rectangle "Analysis Layer" {
+    component "Password Security Checks" as Checks
+    component "Common Password Detection" as Common
+    component "Score Calculation" as Score
+    component "Strength Evaluation" as Strength
+}
+
+rectangle "Output Layer" {
+    component "Result Generator" as Results
+}
+
+database "Persistent Storage" as Storage
+
+User --> Input : Enter password
+
+Input --> Checks : Password
+Checks --> Common : Password
+Checks --> Score : Check results
+
+Common --> Score : Common password status
+
+Score --> Strength : Score + common status
+
+Strength --> Results : Strength result
+Results --> User : Analysis results
+
+Input ..> Storage : No password stored
+note right of Storage
+No persistent password storage
+for security reasons
+end note
+
+@enduml

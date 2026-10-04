@@ -1,0 +1,28 @@
+@startuml
+
+top to bottom direction
+
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "User" as User
+
+rectangle "1.0\nNormalize Password" as Normalize
+
+rectangle "2.0\nAnalyze Password" as Analyze
+
+rectangle "3.0\nGenerate Analysis Results" as Results
+
+database "Common Password\nList" as CommonPasswords
+
+User --> Normalize : Password
+
+Normalize --> Analyze : Normalized Password
+
+CommonPasswords --> Analyze : Common Passwords
+
+Analyze --> Results : Analysis Data
+
+Results --> User : Score\nStrength\nFeedback\nRisk Indicators\nRecommendation
+
+@enduml
