@@ -10,8 +10,7 @@ def home():
         password = request.form.get("password")
         common_passwords = load_common_passwords()
         results = analyze_password(password, common_passwords)
-        return render_template("index.html", results=results, password=password)
-
+        return render_template("index.html", results=results)
     return render_template("index.html")
 
 @app.route("/about")
