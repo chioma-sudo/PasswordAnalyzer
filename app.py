@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request
 from main import analyze_password, load_common_passwords 
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder="Templates",
+    static_folder="Static"
+)
 
 
 @app.route("/", methods=["GET", "POST"])
